@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <link rel="icon" href="/static/icon">
+    <link rel="stylesheet" href="/static/css/index.css">
+  </head>
+<body>
+  <div class="mike-container">
+    <div class="mike-main">
+      <div class="mike-header">
+        <h1>TODO</h1>
+        <h2>记录你的待办事项</h2>
+      </div>
+      <div class="mike-form">
+        <div class="mike-tag">
+          <span>登录</span>
+          <div class="mike-block"></div>
+        </div>
+        <div id="id-div-login">
+          <form action="{{ url_for('user.login') }}" method="post">
+            <div class="mike-form-textinput">
+              <div class="mike-input-wrapper">
+                <input type="text" name="username" placeholder="用户名">
+              </div>
+              <div class="mike-input-wrapper">
+               <input type="password" name="password" placeholder="密码">
+              </div>
+            </div>
+            <button class="mike-button-big">登录</button>
+          </form>
+        </div>
+      </div>
+      <div id="id-div-register_link">
+        <a href="{{ url_for('user.register') }}">移步到注册</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
