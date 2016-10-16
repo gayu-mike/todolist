@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Todo</title>
+    <link rel="icon" href="/static/icon">
+    <link rel="stylesheet" href="/static/css/todo.css">
+  </head>
+  <body>
+    <div class="mike-container">
+      <div class="todo-main">
+        <div class="mike-header">
+          <h1>TODO</h1>
+          <h2>记录你的待办事项</h2>
+        </div>
+        <div class="">
+          <form id="id-div-form" action="{{ url_for('.add' )}}" method="post">
+            <!-- <div class="todo-form-textinput mike-input-wrapper"> -->
+            <input id="id-input-add" type="text" name="task">
+            <!-- </div> -->
+            <button id="id-button-add">ADD</button>
+          </form>
+        </div>
+        <div class="todo-content">
+          {% for todo in todo_list %}
+            <div class="todo-task-cell">
+              <div class="todo-task-item">
+                <a class="todo-task-item-done" href="{{ url_for('.delete', todo_id=todo.id) }}">
+                  {{ todo.task }}
+                </a>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
