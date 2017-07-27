@@ -1,5 +1,5 @@
-from flask import Blueprint
 from flask import abort
+from flask import Blueprint
 from flask import redirect
 from flask import render_template
 from flask import request
@@ -24,8 +24,7 @@ def index(username):
 def add():
     u = current_user()
     if u is not None:
-        form = request.form
-        t = Todo(form)
+        t = Todo(request.form)
         t.user_id = u.id
         if t.validate_todo():
             t.save()

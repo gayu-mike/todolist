@@ -1,9 +1,9 @@
-from flask import render_template
 from flask import Blueprint
+from flask import render_template
 from flask import request
 from flask import redirect
-from flask import url_for
 from flask import session
+from flask import url_for
 
 from models import User
 
@@ -14,8 +14,7 @@ main = Blueprint('user', __name__)
 def current_user():
     uid = session.get('user_id')
     if uid is not None:
-        u = User.query.get(uid)
-        return u
+        return User.query.get(uid)
 
 
 @main.route('/')
@@ -25,8 +24,7 @@ def index():
 
 @main.route('/user/login', methods=['POST'])
 def login():
-    form = request.form
-    u = User(form)
+    u = User(request.form)
     user = User.query.filter_by(username=u.username).first()
     if user is not None and user.validate_login(u):
         session['user_id'] = user.id
@@ -42,8 +40,7 @@ def register():
 
 @main.route('/user/new', methods=['POST'])
 def new():
-    form = request.form
-    u = User(form)
+    u = User(request.form)
     if u.validate_register():
         u.save()
         return redirect(url_for('.index'))
